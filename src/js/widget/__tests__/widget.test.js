@@ -24,7 +24,6 @@ describe('CardValidatorWidget DOM interaction', () => {
     widget.bindToDOM(container);
   });
 
-
   test.each([
     ['4111111111111111', 'visa'],
     ['5555555555554444', 'mastercard'],

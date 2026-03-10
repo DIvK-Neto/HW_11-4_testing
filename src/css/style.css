@@ -44,3 +44,26 @@ button {
   margin-top: 15px;
   font-weight: bold;
 }
+
+/* Медиа-запрос для мобильных устройств */
+@media (max-width: 600px) {
+  .validator-widget {
+    margin: 20px auto;
+    padding: 15px;
+  }
+
+  .cards {
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .card-logo {
+    width: 40px;
+  }
+
+  button {
+    width: 100%;
+    padding: 12px;
+  }
+}

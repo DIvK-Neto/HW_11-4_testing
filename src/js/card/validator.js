@@ -1,3 +1,8 @@
+/**
+ * Проверяет номер карты по алгоритму Луна.
+ * @param {string} cardNumber - Номер карты (может содержать пробелы и нецифровые символы).
+ * @returns {boolean} true, если номер валиден по алгоритму Луна, иначе false.
+ */
 export default function luhnCheck(cardNumber) {
   const digits = cardNumber.replace(/\D/g, '');
   if (digits.length === 0) return false;
