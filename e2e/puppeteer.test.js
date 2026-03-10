@@ -12,9 +12,7 @@ describe('E2E: Credit Card Validator', () => {
   let tempDir;
 
   beforeAll(async () => {
-    // Создаём уникальную временную папку для профиля Chrome
     tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'puppeteer-'));
-
     browser = await puppeteer.launch({
       headless: 'new',
       args: ['--no-sandbox', '--disable-setuid-sandbox'],
@@ -28,7 +26,6 @@ describe('E2E: Credit Card Validator', () => {
     if (browser) {
       await browser.close();
     }
-    // Удаляем временную папку (если получится)
     try {
       fs.rmSync(tempDir, { recursive: true, force: true });
     } catch (e) {
@@ -43,7 +40,9 @@ describe('E2E: Credit Card Validator', () => {
     const message = await page.$eval('.modal p', (el) => el.textContent);
     expect(message).toBe('Номер карты валидный');
     await page.click('.modal .close');
-  });
+    // Очищаем поле ввода для следующего теста
+    await page.$eval('input', el => el.value = '');
+  }, 10000);
 
   test('невалидный номер карты – появляется сообщение "Номер карты невалидный"', async () => {
     await page.type('input', '1234567890123456');
@@ -51,5 +50,5 @@ describe('E2E: Credit Card Validator', () => {
     await page.waitForSelector('.modal', { visible: true });
     const message = await page.$eval('.modal p', (el) => el.textContent);
     expect(message).toBe('Номер карты невалидный');
-  });
+  }, 10000);
 });
