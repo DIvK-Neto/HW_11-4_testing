@@ -22,7 +22,6 @@ export default class Modal {
     this.modalElement
       .querySelector('.close')
       .addEventListener('click', () => this.hide());
-    // Можно добавить закрытие по клику вне модалки
     this.modalElement.addEventListener('click', (e) => {
       if (e.target === this.modalElement) this.hide();
     });

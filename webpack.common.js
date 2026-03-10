@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-  entry: './src/index.js', // точка входа в корне src
+  entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
@@ -24,14 +24,14 @@ module.exports = {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: 'asset/resource',
         generator: {
-          filename: 'img/[name][ext]', // изображения будут скопированы в dist/img
+          filename: 'img/[name][ext]',
         },
       },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html', // шаблон в корне src
+      template: './src/index.html',
     }),
     new MiniCssExtractPlugin({
       filename: '[name].css',

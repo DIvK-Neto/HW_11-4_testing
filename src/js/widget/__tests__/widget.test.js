@@ -18,14 +18,12 @@ describe('CardValidatorWidget DOM interaction', () => {
 
   // Перед каждым тестом создаём чистый DOM и монтируем виджет
   beforeEach(() => {
-    // Создаём контейнер в body
     document.body.innerHTML = '<div id="widget-container"></div>';
     container = document.getElementById('widget-container');
     widget = new CardValidatorWidget();
     widget.bindToDOM(container);
   });
 
-  // После каждого теста можно очищать, но это не обязательно, так как каждый раз новый DOM
 
   test.each([
     ['4111111111111111', 'visa'],
@@ -70,7 +68,6 @@ describe('CardValidatorWidget DOM interaction', () => {
 
       const modal = getModal();
       expect(modal).not.toBeNull();
-      // Модальное окно должно быть видимо (style.display не 'none')
       expect(modal.style.display).not.toBe('none');
       const messageElement = modal.querySelector('p');
       expect(messageElement.textContent).toBe('Номер карты валидный');

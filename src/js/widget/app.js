@@ -7,7 +7,7 @@ import discoverImg from '../../img/discover.png';
 import jcbImg from '../../img/jcb.png';
 import dinersImg from '../../img/diners.png';
 import mirImg from '../../img/mir.png';
-import Modal from '../modal/modal'; // добавили импорт
+import Modal from '../modal/modal';
 
 export default class CardValidatorWidget {
   constructor() {
@@ -22,14 +22,13 @@ export default class CardValidatorWidget {
       { type: 'diners', img: dinersImg },
       { type: 'mir', img: mirImg },
     ];
-    this.modalContainer = null; // для модалки
+    this.modalContainer = null;
   }
 
   bindToDOM(container) {
     this.container = container;
     this.render();
     this.subscribe();
-    // Создаём контейнер для модального окна, если его нет
     if (!document.getElementById('modal-container')) {
       this.modalContainer = document.createElement('div');
       this.modalContainer.id = 'modal-container';
@@ -65,7 +64,6 @@ export default class CardValidatorWidget {
     button.textContent = 'Проверить';
     widget.append(button);
 
-    // Убрали this.message, больше не нужен
 
     this.container.append(widget);
   }
@@ -73,7 +71,6 @@ export default class CardValidatorWidget {
   subscribe() {
     const button = this.container.querySelector('button');
     button.addEventListener('click', () => this.validate());
-    // Добавляем обработчик input
     this.input.addEventListener('input', () => this.onInput());
   }
 
