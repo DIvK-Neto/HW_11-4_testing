@@ -1,3 +1,6 @@
+/**
+ * @jest-environment node
+ */
 import puppeteer from 'puppeteer';
 import fs from 'fs';
 import os from 'os';
