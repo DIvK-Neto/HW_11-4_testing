@@ -2,7 +2,6 @@ import puppeteer from 'puppeteer';
 import fs from 'fs';
 import os from 'os';
 import path from 'path';
-import { execSync } from 'child_process';
 
 describe('E2E: Credit Card Validator', () => {
   let browser;
@@ -10,23 +9,7 @@ describe('E2E: Credit Card Validator', () => {
   let tempDir;
 
   beforeAll(async () => {
-    // Принудительно убиваем все возможные процессы Chrome
-    try {
-      execSync('taskkill /F /IM chrome.exe', { stdio: 'ignore' });
-    } catch {
-      // Процесс не найден – игнорируем
-    }
-    try {
-      execSync('taskkill /F /IM "Google Chrome for Testing.exe"', {
-        stdio: 'ignore',
-      });
-    } catch {
-      // Процесс не найден – игнорируем
-    }
-    // Даём время на завершение процессов
-    await new Promise((resolve) => setTimeout(resolve, 3000));
-
-    // Создаём уникальную временную папку
+    // Создаём уникальную временную папку для профиля Chrome
     tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'puppeteer-'));
 
     browser = await puppeteer.launch({
@@ -41,8 +24,6 @@ describe('E2E: Credit Card Validator', () => {
   afterAll(async () => {
     if (browser) {
       await browser.close();
-      const proc = browser.process();
-      if (proc) proc.kill('SIGKILL');
     }
     // Удаляем временную папку (если получится)
     try {
