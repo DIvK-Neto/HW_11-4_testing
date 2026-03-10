@@ -1,0 +1,46 @@
+.validator-widget {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: center;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+}
+
+.cards {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 15px;
+}
+
+.card-logo {
+  width: 50px;
+  height: auto;
+  opacity: 0.3;
+  transition: opacity 0.3s;
+}
+
+.card-logo.active {
+  opacity: 1;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.message {
+  margin-top: 15px;
+  font-weight: bold;
+}
