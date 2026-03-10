@@ -40,9 +40,11 @@ describe('E2E: Credit Card Validator', () => {
     const message = await page.$eval('.modal p', (el) => el.textContent);
     expect(message).toBe('Номер карты валидный');
     await page.click('.modal .close');
-    // Очищаем поле ввода для следующего теста
-    await page.$eval('input', el => el.value = '');
-  }, 10000);
+    // Ждём, пока модальное окно исчезнет
+    await page.waitForSelector('.modal', { hidden: true });
+    // Очищаем поле ввода
+    await page.$eval('input', (el) => { el.value = ''; });
+  }, 15000);
 
   test('невалидный номер карты – появляется сообщение "Номер карты невалидный"', async () => {
     await page.type('input', '1234567890123456');
@@ -50,5 +52,5 @@ describe('E2E: Credit Card Validator', () => {
     await page.waitForSelector('.modal', { visible: true });
     const message = await page.$eval('.modal p', (el) => el.textContent);
     expect(message).toBe('Номер карты невалидный');
-  }, 10000);
+  }, 15000);
 });
